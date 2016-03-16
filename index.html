@@ -32,9 +32,11 @@
         MP.api.query('/api/2.0/custom_events/').done(function(json) {
             console.log('got json\n', json);
           eventSelect = $('#eventSelect').MPSelect(options);
-        })
-        .fail(function($xhr) {
-          eventSelect = $('#eventSelect').MPSelect(options);
+          eventSelect.on('change', function(e, eventName) {
+            propSelect.MPPropertySelect('setEvent', eventName);
+            $("#by").show();
+            runQuery();
+          });
         });
     });
       
@@ -58,11 +60,6 @@
           });
         }
       };
-      eventSelect.on('change', function(e, eventName) {
-        propSelect.MPPropertySelect('setEvent', eventName);
-        $("#by").show();
-        runQuery();
-      });
       propSelect.on('change', runQuery);
       dateSelect.on('change', runQuery);
     </script>
