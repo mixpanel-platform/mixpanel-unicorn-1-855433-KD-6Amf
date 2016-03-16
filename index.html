@@ -32,7 +32,7 @@
     };
 
     MP.api.topEvents(params).done(function(results) {
-        for (x in results) {
+        for (x in results.values()) {
             options.items.push({label: x, value: x});
         }
         console.log('top events\n', options);
