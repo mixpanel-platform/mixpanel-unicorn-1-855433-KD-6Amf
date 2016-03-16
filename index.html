@@ -17,7 +17,17 @@
     </div>
     <div id="table"></div>
     <script>
-      var eventSelect = $('#eventSelect').MPEventSelect();
+    
+    
+    var options = {
+        items: [
+          {label: 'Label 1', value: 1},
+          {label: 'Label 2', value: 'Value 2'},
+          {label: 'Third label', value: '3rd value'}
+        ]
+      };
+      
+      var eventSelect = $('#eventSelect').MPSelect(options);
       var propSelect  = $('#propSelect').MPPropertySelect();
       var dateSelect  = $('#dateSelect').MPDatepicker();
       var eventGraph  = $('#graph').MPChart({chartType: 'line'});
