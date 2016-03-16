@@ -30,6 +30,9 @@
             options.items.push({label: v, value: v});
         })
         MP.api.query('/api/2.0/custom_events/').done(function(json) {
+          _.each(json.custom_events, function(v,k) {
+              options.items.push({label: "$custom_event:"+ v.name, value: "$custom_event:"+ v.id});
+          })
             console.log('got json\n', json);
           eventSelect = $('#eventSelect').MPSelect(options);
           eventSelect.on('change', function(e, eventName) {
