@@ -17,7 +17,7 @@
     </div>
     <div id="table"></div>
     <script>
-    
+    var eventSelect;
     var options = {items: []};
     
     var params = {
@@ -31,10 +31,10 @@
         })
         MP.api.query('/api/2.0/custom_events/').done(function(json) {
             console.log('got json\n', json);
-          var eventSelect = $('#eventSelect').MPSelect(options);
+          eventSelect = $('#eventSelect').MPSelect(options);
         })
         .fail(function($xhr) {
-          var eventSelect = $('#eventSelect').MPSelect(options);
+          eventSelect = $('#eventSelect').MPSelect(options);
         });
     });
       
