@@ -26,21 +26,24 @@
     };
 
     MP.api.topEvents(params).done(function(results) {
-          _.each(results.values(), function(v,k) {
-            options.items.push({label: v, value: v});
-        })
-        MP.api.query('/api/2.0/custom_events/').done(function(json) {
-          _.each(json.custom_events, function(v,k) {
-              options.items.push({label: "$custom_event:"+ v.name, value: "$custom_event:"+ v.id});
-          })
+          console.log('top events\n', results.values());
+
+      _.each(results.values(), function(v,k) {
+        options.items.push({label: v, value: v});
+      })
+      MP.api.query('/api/2.0/custom_events/').done(function(json) {
             console.log('got json\n', json);
-          eventSelect = $('#eventSelect').MPSelect(options);
-          eventSelect.on('change', function(e, eventName) {
-            propSelect.MPPropertySelect('setEvent', eventName);
-            $("#by").show();
-            runQuery();
-          });
+
+        _.each(json.custom_events, function(v,k) {
+          options.items.push({label: "$custom_event:"+ v.name, value: "$custom_event:"+ v.id});
+        })
+        eventSelect = $('#eventSelect').MPSelect(options);
+        eventSelect.on('change', function(e, eventName) {
+          propSelect.MPPropertySelect('setEvent', eventName);
+          $("#by").show();
+          runQuery();
         });
+      });
     });
       
       var propSelect  = $('#propSelect').MPPropertySelect();
