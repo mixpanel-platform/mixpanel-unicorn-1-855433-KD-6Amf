@@ -32,7 +32,7 @@
         options.items.push({label: v, value: v});
       })
       MP.api.query('/api/2.0/custom_events/').done(function(json) {
-            console.log('got json\n', json);
+            console.log('got json\n', json.custom_events);
 
         _.each(json.custom_events, function(v,k) {
           options.items.push({label: "$custom_event:"+ v.name, value: "$custom_event:"+ v.id});
