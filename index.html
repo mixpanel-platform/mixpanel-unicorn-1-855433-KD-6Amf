@@ -29,15 +29,13 @@
           _.each(results.values(), function(v,k) {
             options.items.push({label: v, value: v});
         })
-        console.log('top events\n', options);
-        MP.api.query('/api/2.0/custom_events/')
-        .done(function(json) {
+        MP.api.query('/api/2.0/custom_events/').done(function(json) {
             console.log('got json\n', json);
+          var eventSelect = $('#eventSelect').MPSelect(options);
         })
         .fail(function($xhr) {
-            console.log('error with request', $xhr);
+          var eventSelect = $('#eventSelect').MPSelect(options);
         });
-        var eventSelect = $('#eventSelect').MPSelect(options);
     });
       
       var propSelect  = $('#propSelect').MPPropertySelect();
