@@ -18,7 +18,21 @@
     <div id="table"></div>
     <script>
     
-    
+    var params = {
+        type: 'general',  // analysis type for the data, can be 'general', 'unique', or 'average'
+        limit: 30          // maximum number of results to return
+    };
+
+    MP.api.topEvents(params).done(function(results) {
+        console.log('top events\n', results.values());
+        MP.api.query('/api/2.0/custom_events/')
+        .done(function(json) {
+            console.log('got json\n', json);
+        })
+        .fail(function($xhr) {
+            console.log('error with request', $xhr);
+        });
+    });
     var options = {
         items: [
           {label: 'Label 1', value: 1},
@@ -37,7 +51,7 @@
       });
 
       var runQuery = function() {
-        var eventName = eventSelect.MPEventSelect('value'),
+        var eventName = eventSelect.MPSelect('value'),
             propName  = propSelect.MPPropertySelect('value'),
             dateRange = dateSelect.MPDatepicker('value');
 
