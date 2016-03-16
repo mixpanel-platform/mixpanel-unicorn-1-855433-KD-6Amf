@@ -32,10 +32,10 @@
     };
 
     MP.api.topEvents(params).done(function(results) {
-        for (x in person) {
+        for (x in results) {
             options.items.push({label: x, value: x});
         }
-        console.log('top events\n', options);
+        console.log('top events\n', results.values());
         MP.api.query('/api/2.0/custom_events/')
         .done(function(json) {
             console.log('got json\n', json);
