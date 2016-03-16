@@ -18,13 +18,24 @@
     <div id="table"></div>
     <script>
     
+    var options = {
+        items: [
+          {label: 'Label 1', value: 1},
+          {label: 'Label 2', value: 'Value 2'},
+          {label: 'Third label', value: '3rd value'}
+        ]
+      };
+    
     var params = {
         type: 'general',  // analysis type for the data, can be 'general', 'unique', or 'average'
         limit: 30          // maximum number of results to return
     };
 
     MP.api.topEvents(params).done(function(results) {
-        console.log('top events\n', results.values());
+        for (x in person) {
+            options.items.push({label: x, value: x});
+        }
+        console.log('top events\n', options);
         MP.api.query('/api/2.0/custom_events/')
         .done(function(json) {
             console.log('got json\n', json);
@@ -33,13 +44,6 @@
             console.log('error with request', $xhr);
         });
     });
-    var options = {
-        items: [
-          {label: 'Label 1', value: 1},
-          {label: 'Label 2', value: 'Value 2'},
-          {label: 'Third label', value: '3rd value'}
-        ]
-      };
       
       var eventSelect = $('#eventSelect').MPSelect(options);
       var propSelect  = $('#propSelect').MPPropertySelect();
